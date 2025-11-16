@@ -1,7 +1,7 @@
 /**
  * EdgeOne Functions - 资源提交
  * 路由: /api/submit-website
- * 用途: 接收用户提交的站点，保存到待审核列表并发送邮件通知
+ * 用途: 接收用户提交的资源，保存到待审核列表并发送邮件通知
  */
 
 // 处理OPTIONS请求（CORS预检）
@@ -212,7 +212,7 @@ export async function onRequestPost({ request, env }) {
           const adminEmailPayload = {
             from: RESEND_DOMAIN ? `noreply@${RESEND_DOMAIN}` : 'onboarding@resend.dev',
             to: [ADMIN_EMAIL],
-            subject: `[BinNav] 新资源提交 - ${name}`,
+            subject: `[ZYDS.NET] 新资源提交 - ${name}`,
             html: `
               <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
@@ -271,7 +271,7 @@ export async function onRequestPost({ request, env }) {
                 </div>
                 
                 <div style="text-align: center; padding: 20px; color: #9ca3af; font-size: 12px;">
-                  此邮件由 zyds.net 系统自动发送，请勿回复。
+                  此邮件由 共创资源库 系统自动发送，请勿回复。
                 </div>
               </div>
             `
@@ -302,7 +302,7 @@ export async function onRequestPost({ request, env }) {
         const submitterEmailPayload = {
           from: RESEND_DOMAIN ? `noreply@${RESEND_DOMAIN}` : 'onboarding@resend.dev',
           to: [contactEmail],
-          subject: `[BinNav] 资源提交确认 - ${name}`,
+          subject: `[ZYDS.NET] 资源提交确认 - ${name}`,
           html: `
             <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
               <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
@@ -318,7 +318,7 @@ export async function onRequestPost({ request, env }) {
                   <h3 style="margin-top: 0; color: #10b981;">提交信息</h3>
                   <table style="width: 100%; border-collapse: collapse;">
                     <tr>
-                      <td style="padding: 8px 0; font-weight: bold; color: #6b7280; width: 100px;">网站名称:</td>
+                      <td style="padding: 8px 0; font-weight: bold; color: #6b7280; width: 100px;">资源名称:</td>
                       <td style="padding: 8px 0;">${name}</td>
                     </tr>
                     <tr>
@@ -352,13 +352,13 @@ export async function onRequestPost({ request, env }) {
                 <div style="text-align: center; margin: 30px 0;">
                   <a href="${request.headers.get('origin') || 'https://ku.zyds.net'}" 
                      style="display: inline-block; background-color: #10b981; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold;">
-                    访问 BinNav
+                    访问 KU.ZYDS.NET
                   </a>
                 </div>
               </div>
               
               <div style="text-align: center; padding: 20px; color: #9ca3af; font-size: 12px;">
-                此邮件由 BinNav 系统自动发送，请勿回复。
+                此邮件由 共创资源库 系统自动发送，请勿回复。
               </div>
             </div>
           `
